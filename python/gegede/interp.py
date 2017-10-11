@@ -11,8 +11,10 @@ def make_builder(dat, name = None):
     This consumes the 'class' and 'subuilders' entries of the configuration dat object.
     '''
     builder_objects = dict()
+    print('Makebuilder dat type: '+str(type(dat)))
     if name is None:
-        name = dat.items()[0][0]
+        print("Makebuilder dat: " + str(type(dat.items())))
+        name = list(dat.items())[0][0]
 
     top = walk_builder_config_graph(dat, name, builder_objects)
     return top
@@ -26,8 +28,8 @@ def walk_builder_config_graph(dat, bname, builder_objects):
 
     try:
         bdat = dat[bname]
-    except KeyError,e:
-        print 'No such builder configuration section: "bname"' % bname
+    except KeyError as e:
+        print( 'No such builder configuration section: "bname"' % bname)
         raise
     klass = bdat.pop('class')   # make exactly one instance
     bobj = klass(bname)

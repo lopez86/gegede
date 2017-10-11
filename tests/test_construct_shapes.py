@@ -28,7 +28,7 @@ def test_unique_shapes():
     try:
         g.shapes.Box("box0",'1mm','2mm','3mm')
     except ValueError:
-        print 'Correctly failed to allow two boxes of same name'
+        print( 'Correctly failed to allow two boxes of same name')
         pass
     else:
         raise RuntimeError, "Allowed to make two boxes of same name"
@@ -44,7 +44,7 @@ def test_make_some_shapes():
     else:
         raise RuntimeError, 'Failed to catch unitless box dimensions %s' % str(b1)
         
-    print 'B1',b1
+    print('B1',b1)
     b2 = g.shapes.Box("box2",'1cm',dz='3cm',dy='2cm') # out of order kwargs should work
     b3 = g.shapes.Box("box3","1cm","2cm","3.0cm")    
     assert b1.dx==b2.dx and b2.dx==b3.dx, str([b1,b2,b3])
@@ -53,18 +53,18 @@ def test_make_some_shapes():
     try:
         g.shapes.Box("box4", 1, 2, dy=22, dz=33)
     except ValueError:
-        print 'Correctly failed with duplicate kwargs'
+        print( 'Correctly failed with duplicate kwargs')
         pass
     else:
         raise RuntimeError, "Didn't catch dup kwargs error"
 
-    print 'Shape store:\n\t', '\n\t'.join([str(v) for v in g.store.shapes.values()])
+    print( 'Shape store:\n\t', '\n\t'.join([str(v) for v in g.store.shapes.values()]))
 
 
 def test_default_args():
     g = construct.Geometry()
     b1 = g.shapes.Box('box1')
-    print 'Box1:',b1
+    print( 'Box1:',b1)
 
 if '__main__' == __name__:
     test_units()

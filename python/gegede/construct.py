@@ -1,8 +1,8 @@
 
 
 from collections import namedtuple, OrderedDict
-import schema as default_schema
-from schema.tools import make_maker
+import gegede.schema as default_schema
+from .schema.tools import make_maker
 from .util import list_match
 
 class Geometry(object):

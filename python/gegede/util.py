@@ -43,6 +43,7 @@ def list_match(values, entry = None, deref = lambda x: x):
     if entry is None:
         return values
 
+    print(str(type(values)))
     if isinstance(entry, int):
         return [values[entry]]
 
