@@ -165,7 +165,7 @@ def make_shape_node(shape):
     return
 
 def make_volume_node(vol, store):
-    #print 'VOL',vol
+    #print( 'VOL',vol)
     node_type = 'volume'
     if vol.material is None and vol.shape is None:
         node = etree.Element('assembly', name=vol.name)
@@ -271,8 +271,8 @@ def validate(text):
     xml = etree.parse(StringIO(text))
     okay = xsd.validate(xml)
     if not okay:
-        print xsd.error_log
-        raise ValueError, 'Invalid GDML'
+        print( xsd.error_log)
+        raise ValueError('Invalid GDML')
     return True
 
 def validate_object(obj):
@@ -286,7 +286,7 @@ def dumps(obj):
     Return a string representation of the object returned by convert.
     '''
     xml = etree.tostring(obj, pretty_print = True, xml_declaration = True)
-    xml = xml.replace("'",'"')  # work around ROOT GDML import bug....
+    xml = xml.replace(b"'",b'"')  # work around ROOT GDML import bug....
     # don't validate here
     return xml
 
@@ -294,4 +294,4 @@ def output(obj, filename):
     '''
     Save to file
     '''
-    open(filename,'w').write(dumps(obj))
+    open(filename,'wb').write(dumps(obj))
